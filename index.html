@@ -1,30 +1,33 @@
 <html>
-    <head>
-        <title>Ascci ART</title>
-        <meta charset="UTF-8">
-        <meta> 
-        <link rel="stylesheet" href="style.css">
-        
-    </head>
-    <body>
-        <div id='title-container'>
-            <h1>Ascii art</h1>
+<head>
+    <title>Ascii Art</title>
+    <meta charset="UTF-8">
+    <meta>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id='title-container'>
+        <h1>Ascii Art</h1>
+    </div>
+
+    <div id='menu-container'>
+        <h1>Menu</h1>
+        <div class="slide-container">
+            <h3>Width</h3>
+            <input type="range" min="1" max="100" value="50" id="wid">
+            <h3>Height</h3>
+            <input type="range" min="1" max="100" value="50" id="hei">
         </div>
+    </div>
 
-        <div id='menu-container'>
-            <h1>Menu</h1>
-            <div class="slide-container">
-                <h3>Width</h3>
-                <input type="range" min="1" max="100" value="50" class="slider" id="width">
-            </div>
-        </div>
-
-        <p>
-            <input type="file" name="picture">
-        </p>
-        <canvas id="preview"></canvas>
-
-
-        <script src="action.js"></script>    
-    </body>
+    <p>
+        <input type="file" name="picture">
+    </p>
+    <canvas id="preview" style="display: none;"></canvas>
+    <pre id="ascii"></pre>
+    <canvas id="asciidown" style="display: none;" width="3000" height="1500"></canvas>
+    <button onclick="DownloadCanvasAsImage()">Download</button>
+    <script src="action.js"></script>
+</body>
 </html>
