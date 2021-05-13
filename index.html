@@ -1,12 +1,16 @@
 <html>
+
 <head>
     <title>Ascii Art</title>
     <meta charset="UTF-8">
     <meta>
     <link rel="stylesheet" href="style.css">
+    <script async src="action.js"></script>
 
 </head>
+
 <body>
+
     <div id='title-container'>
         <h1>Ascii Art</h1>
     </div>
@@ -19,15 +23,17 @@
             <h3>Height</h3>
             <input type="range" min="1" max="100" value="50" id="hei">
         </div>
+        <p>
+            <input type="file" name="picture">
+        </p>
     </div>
 
-    <p>
-        <input type="file" name="picture">
-    </p>
+
     <canvas id="preview" style="display: none;"></canvas>
     <pre id="ascii"></pre>
     <canvas id="asciidown" style="display: none;" width="3000" height="1500"></canvas>
     <button onclick="DownloadCanvasAsImage()">Download</button>
-    <script src="action.js"></script>
+    <button onclick="clearAsciiImage()">Clear</button>
 </body>
+
 </html>

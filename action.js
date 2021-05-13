@@ -28,7 +28,7 @@ const convertToGrayScales = (context, width, height) => {
 
     const grayScales = [];
 
-    for (let i = 0 ; i < imageData.data.length ; i += 4) {
+    for (let i = 0; i < imageData.data.length; i += 4) {
         const r = imageData.data[i];
         const g = imageData.data[i + 1];
         const b = imageData.data[i + 2];
@@ -68,27 +68,27 @@ fileInput.onchange = (e) => {
 
     const reader = new FileReader();
     reader.onload = (event) => {
-		
+
         const image = new Image();
         image.onload = () => {
             const [width, height] = clampDimensions(image.width, image.height);
-			imwid = width;
-			imhei = height;
+            imwid = width;
+            imhei = height;
             canvas.width = width;
             canvas.height = height;
-            down.height = height*16;
-			down.width = width*10;
+            down.height = height * 16;
+            down.width = width * 10;
             context.drawImage(image, 0, 0, width, height);
             const grayScales = convertToGrayScales(context, width, height);
 
             fileInput.style.display = 'none';
-			drawAscii(grayScales, width);
-			// Fill canvas with ascii image text
-			var contain = asciiImage.textContent;
-			var splittext = contain.split('\n');
-			for (var i=0;i<splittext.length;i++){
-				ctx.fillText(splittext[i],30,30+(i*15));
-			}
+            drawAscii(grayScales, width);
+            // Fill canvas with ascii image text
+            var contain = asciiImage.textContent;
+            var splittext = contain.split('\n');
+            for (var i = 0; i < splittext.length; i++) {
+                ctx.fillText(splittext[i], 30, 30 + (i * 15));
+            }
         }
         image.src = event.target.result;
     };
@@ -115,17 +115,23 @@ const drawAscii = (grayScales, width) => {
 var w = document.getElementById("wid");
 var h = document.getElementById("hei");
 setInterval(function() {
-  MAXIMUM_WIDTH = w.value;
-  MAXIMUM_HEIGHT = h.value;
+    MAXIMUM_WIDTH = w.value;
+    MAXIMUM_HEIGHT = h.value;
 }, 100)
 
-function DownloadCanvasAsImage(){
+function DownloadCanvasAsImage() {
     let downloadLink = document.createElement('a');
     downloadLink.setAttribute('download', 'AsciiImage.png');
     let canvas = document.getElementById('asciidown');
     canvas.toBlob(function(blob) {
-      let url = URL.createObjectURL(blob);
-      downloadLink.setAttribute('href', url);
-      downloadLink.click();
-	});
+        let url = URL.createObjectURL(blob);
+        downloadLink.setAttribute('href', url);
+        downloadLink.click();
+    });
+}
+
+function clearAsciiImage() {
+    const context = canvas.getContext('2d');
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
 }
