@@ -1,6 +1,5 @@
 const canvas = document.getElementById('preview');
 const fileInput = document.querySelector('input[type="file"');
-
 const asciiImage = document.getElementById('ascii');
 const down = document.getElementById('asciidown');
 const ctx = down.getContext('2d');
@@ -42,25 +41,11 @@ const convertToGrayScales = (context, width, height) => {
 
     context.putImageData(imageData, 0, 0);
 
-const buttonInput = document.querySelector('button');
-const context = canvas.getContext("2d");
-var image;
-
-
     return grayScales;
 };
 
-
 var MAXIMUM_WIDTH = 80;
 var MAXIMUM_HEIGHT = 80;
-
-  const reader = new FileReader();
-  reader.onload = event => {
-    image = new Image();
-    image.onload = () => {
-      canvas.width = image.width;
-      canvas.height = image.height;
-
 
 const clampDimensions = (width, height) => {
     const rectifiedWidth = Math.floor(getFontRatio() * width);
@@ -143,29 +128,4 @@ function DownloadCanvasAsImage(){
       downloadLink.setAttribute('href', url);
       downloadLink.click();
 	});
-
-  reader.readAsDataURL(file);
-};
-
-buttonInput.onclick = e => {
-  console.log('Clicked convert button')
-  let myPixelArt = '';
-  // Start the first row of "pixels".
-  myPixelArt += '<div class="a-row-of-pixels">';
-  for (let y = 0; y < image.height; y++) {
-    for (let x = 0; x < image.width; x++) {
-      const theImageData = context.getImageData(x, y, 1, 1);
-      const theRGBvalues = theImageData.data;
-
-      // Concatenate every column of "pixels" in this row, one after the other.
-      myPixelArt += `<div class="a-pixel" style="background: rgb(${ theRGBvalues[0] }, ${ theRGBvalues[1] }, ${ theRGBvalues[2] })"></div>`;
-
-    }
-    // Concatenate the end of the row and the beginning of a new one.   
-    myPixelArt += '</div><div class="a-row-of-pixels">';
-  }
-  // The last row will be empty but who cares, let's close it.
-  myPixelArt += '</div>';
-  document.getElementById("ascii-art").innerHTML += myPixelArt;
-
 }
